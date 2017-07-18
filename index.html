@@ -34,123 +34,13 @@
     <div id="app">
         <ul id="navbar" class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#etusivu">Etusivu</a>  </li>
-			<li>
-                <a data-toggle="tab" href="#sivu1">
-                    Sivu1
-                </a>
-            </li>
-			<li>
-                <a data-toggle="tab" href="#uusi">
-                    Uusi
-                </a>
-            </li>
-			<li>
-                <a data-toggle="tab" href="#sivu2">
-                    Sivu2
-                </a>
-            </li>
 		</ul>
 
 		<div class="tab-content">
 			<div id="etusivu" class="tab-pane fade in active">
-                <h1>Tarkkailuraportti</h1>
+                <h1>Lupaus</h1>
 
-                <select v-model="selectedReport" @change="reportSelected()">
-                    <option disabled value="-1">Valitse raportti</option>
-                    <option v-for="raportti in raportit" :value="raportti.id">{{raportti.koti}}-{{raportti.vieras}}</option>
-                </select>
-
-                Valittu: {{selectedReport}}
-
-
-                <div v-if="parseInt(selectedReport,10) > 0">
-                    <hr>
-                    <h1>Valittu raportti</h1> Id: {{raportti.id}}
                     
-                    <h3>Ottelu:</h3>
-                    <p>Pvm: {{raportti.pvm}}<br>
-                       Paikka: {{raportti.paikka}}<br>
-                       Ottelu: {{raportti.koti}}-{{raportti.vieras}}
-                    </p>
-
-                    <h3>Tuomarit:</h3>
-                    <p>PT: {{raportti.pt_nimi}}<br>
-                    VT: {{raportti.vt_nimi}}<br>
-                    Tarkkailija: {{raportti.tark_nimi}}</p>
-
-                    <h3>Arvostelukohdat:</h3>
-                    <vue-rivi v-for="rivi in raportti.rivit" :rivi="rivi"></vue-rivi> 
-                </div>
-                    
-			</div>
-			<div id="sivu1" class="tab-pane fade">
-                <h1>Talletus</h1>
-
-
-
-			</div>
-			<div id="uusi" class="tab-pane fade">
-                <h1>Uusi raportti</h1>
-
-                <form id="formi" action="javascript:0" @submit="postData()">
-                    <h3>Ottelu:</h3>
-                    <p> Pvm: <input type="datetime-local" required v-model="uusi_raportti.pvm"><br>
-                        Paikka: <input type="text" required v-model="uusi_raportti.paikka"><br>
-                        Ottelu: <input type="text" required v-model="uusi_raportti.koti">-<input required type="text" v-model="uusi_raportti.vieras">
-                    </p>
-
-                    <h3>Tuomarit:</h3>
-                    <p>PT:
-                        <select v-model="uusi_raportti.pt_id">
-                            <option disabled value="-1">Valitse PT</option>
-                            <option v-for="tuomari in tuomarit" :value="tuomari.id">{{tuomari.etunimi}} {{tuomari.sukunimi}}</option>
-                        </select>
-                        Valittu: {{uusi_raportti.pt_id}}
-                        <br>
-                    
-                    VT:
-                        <select v-model="uusi_raportti.vt_id">
-                            <option disabled value="-1">Valitse VT</option>
-                            <option v-for="tuomari in tuomarit" :value="tuomari.id">{{tuomari.etunimi}} {{tuomari.sukunimi}}</option>
-                        </select>
-                        Valittu: {{uusi_raportti.vt_id}}
-                        <br>
-
-                        Tarkkailija:
-                        <select v-model="uusi_raportti.tark_id">
-                            <option disabled value="-1">Valitse Tarkkailija</option>
-                            <option v-for="tuomari in tuomarit" :value="tuomari.id">{{tuomari.etunimi}} {{tuomari.sukunimi}}</option>
-                        </select>
-                        Valittu: {{uusi_raportti.tark_id}}
-                        
-                    </p>
-
-                    <h3>Arvostelukohdat:</h3>
-                    <vue-rivi v-for="rivi in uusi_raportti.rivit" :rivi="rivi"></vue-rivi> 
-
-                    <div>
-                        <button type="submit">PostData</button>
-                    </div>
-                </form>
-
-                <div>
-                    {{postResponse}}
-                </div>
-
-			</div>
-			<div id="sivu2" class="tab-pane fade">
-                <h1>Sivu 2</h1>
-                <h3>Tuomarit</h3>
-                <p v-for="tuomari in tuomarit">Tuomari: {{tuomari.etunimi}} {{tuomari.sukunimi}}, id: {{tuomari.id}}</p>
-
-                <h3>Aiheet</h3>
-                <p v-for="aihe in aiheet">{{aihe.no}} {{aihe.nimi}}, id: {{aihe.id}}</p>
-
-                <h3>Raportit</h3>
-                <p v-for="raportti in raportit">Id: {{raportti.id}}  {{raportti.pvm}} {{raportti.koti}}-{{raportti.vieras}} @{{raportti.paikka}}, pt: {{raportti.pt_nimi}}, vt: {{raportti.vt_nimi}}, tark: {{raportti.tark_nimi}}</p>
-
-                <h3>Rivit</h3>
-                <p v-for="rivi in rivit">Id: {{rivi.id}}  raportti: {{rivi.raportti_id}}  aihe: {{rivi.aihe_nimi}}   arvosana: {{rivi.arvosana}}  huom: {{rivi.huom}}</p>
 			</div>
         </div>        
 
