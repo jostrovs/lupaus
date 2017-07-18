@@ -40,7 +40,13 @@
 			<div id="etusivu" class="tab-pane fade in active">
                 <h1>Lupaus</h1>
 
-                    
+                <h3>Pelaajat</h3>
+                <div v-for="pelaaja in pelaajat">
+                <vue-pelaaja :pelaaja="pelaaja"></vue-pelaaja>    
+                </div>
+
+                <p v-for="pelaaja in pelaajat">{{pelaaja.nimi}}</p> 
+
 			</div>
         </div>        
 

@@ -1,3 +1,19 @@
+Vue.component('vue-pelaaja',{
+    template: `
+        <div>
+            <input type="text" v-model="pelaaja.nimi">
+        </div>
+    `,
+    props: ['pelaaja'],
+    data: function () {
+        return {
+            randomId: this._uid,
+            initialPelaaja: this.pelaaja,
+        }
+    },
+    
+});
+
 Vue.component('vue-rivi', {
                 template: `
                     <div class="form-group">
