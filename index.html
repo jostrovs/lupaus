@@ -4,19 +4,19 @@
 
 <head>
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Tarkkailuraportit</title>
-    <meta name="description" content="Tarkkailuraportit">
+    <title>Lupaus</title>
+    <meta name="description" content="Lupaus">
     <meta name="author" content="Jori Ostrovskij">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 
     <script src="js/jquery-3.1.1.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/lockr.js"></script>
@@ -30,25 +30,50 @@
                                                border: 3px solid #a00;" id="loader">
         Ladataan tietoja...
     </div>
-    
+
     <div id="app">
         <ul id="navbar" class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#etusivu">Etusivu</a>  </li>
-		</ul>
+            <li class="active">
+                <a data-toggle="tab" href="#etusivu">Etusivu</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#sivu1">Peli</a>
+            </li>
+        </ul>
 
-		<div class="tab-content">
-			<div id="etusivu" class="tab-pane fade in active">
+        <div class="tab-content">
+            <div id="etusivu" class="tab-pane fade in active">
                 <h1>Lupaus</h1>
 
                 <h3>Pelaajat</h3>
                 <div v-for="pelaaja in pelaajat">
-                <vue-pelaaja :pelaaja="pelaaja"></vue-pelaaja>    
+                    <vue-pelaaja :pelaaja="pelaaja" :key="pelaaja.id"></vue-pelaaja>
                 </div>
 
-                <p v-for="pelaaja in pelaajat">{{pelaaja.nimi}}</p> 
+                <button class="btn btn-lg btn-success" @click="luoUusi" style="margin-top: 15px">Uusi</button>
 
-			</div>
-        </div>        
+                <hr>
+
+                <div>
+                    <input type="checkbox" v-model="options.showTotal" style="margin-right: 20px"> Näytä kokonaispisteet <br><br>
+                    <input type="checkbox" v-model="options.showJaljessa" style="margin-right: 20px"> Näytä ero johtavaan <br>
+                </div>
+        
+                    </div>
+
+            <div id="sivu1" class="tab-pane">
+                <div>
+                    <button class="btn btn-danger btn-sm" @click="edellinen()">&lt;&lt;</button>
+                    <button class="btn btn-success btn-lg" @click="seuraava()">&gt;&gt;</button>
+                    <span style="font-size: 16px; margin-left: 50px;">Kierros: {{kierros}}</span>
+                </div>
+
+                <div v-for="rivi in rivit">
+                    <vue-rivi :rivi="rivi" :kierros="kierros" :options="options" @rivi_tsek="laskePisteet()"></vue-rivi>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </body>
